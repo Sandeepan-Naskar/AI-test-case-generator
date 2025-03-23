@@ -1,3 +1,5 @@
 # AI-test-case-generator
 
-## Nishta Manvi Sandeepan Devashish
+## Flow:
+
+UI->Backend
