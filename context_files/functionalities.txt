@@ -1,0 +1,66 @@
+Here's a detailed mapping of each functionality to the relevant files in your Java Spring Boot project:
+
+1. **Health Check**
+   - **Filename**: `healthcheck.java`
+   - **Description**: Provides an endpoint to check the application's status.
+   - **Functionality**: GET `/health` returns "OK".
+
+2. **Data Storage and Retrieval**
+   - **Filenames**:
+     - `JournalEntryRepository.java`
+     - `application.properties`
+   - **Description**: Configures and handles connectivity to MongoDB for storing and retrieving journal entries.
+   - **Functionality**: Manages database connections and CRUD operations using Spring Data MongoDB.
+
+3. **List All Journal Entries**
+   - **Filenames**:
+     - `JournalEntryControllerV2.java` (GET endpoint)
+     - `JournalEntryService.java` (getAll method)
+     - `JournalEntryRepository.java` (findAll method)
+   - **Description**: Retrieves and displays all journal entries.
+   - **Functionality**: GET `/journal/record` returns a list of entries.
+
+4. **Create Journal Entry**
+   - **Filenames**:
+     - `JournalEntryControllerV2.java` (POST endpoint)
+     - `JournalEntryService.java` (saveEntry method)
+     - `JournalEntryRepository.java` (save method)
+     - `JournalEntry.java` (entity model)
+   - **Description**: Handles the creation of new journal entries.
+   - **Functionality**: POST `/journal/record` creates a new entry.
+
+5. **Retrieve Journal Entry by ID**
+   - **Filenames**:
+     - `JournalEntryControllerV2.java` (GET endpoint)
+     - `JournalEntryService.java` (findById method)
+     - `JournalEntryRepository.java` (findById method)
+   - **Description**: Fetches a single journal entry using its ID.
+   - **Functionality**: GET `/journal/record/{id}` retrieves an entry by ID.
+
+6. **Delete Journal Entry by ID**
+   - **Filenames**:
+     - `JournalEntryControllerV2.java` (DELETE endpoint)
+     - `JournalEntryService.java` (deleteById method)
+     - `JournalEntryRepository.java` (deleteById method)
+   - **Description**: Removes a journal entry from the database using its ID.
+   - **Functionality**: DELETE `/journal/record/{id}` deletes an entry.
+
+7. **Update Journal Entry**
+   - **Filenames**:
+     - `JournalEntryControllerV2.java` (PUT endpoint)
+     - `JournalEntryService.java` (updateEntry method)
+     - `JournalEntryRepository.java` (save method)
+   - **Description**: Modifies an existing journal entry.
+   - **Functionality**: PUT `/journal/record/{id}` updates an entry.
+
+8. **MongoDB Configuration**
+   - **Filename**: `application.properties`
+   - **Description**: Sets up the connection details for MongoDB.
+   - **Functionality**: Configures host, port, database name, and authentication.
+
+9. **Application Bootstrap**
+   - **Filename**: `JournalApplication.java`
+   - **Description**: Starts the Spring Boot application.
+   - **Functionality**: Initializes the application context and starts the server.
+
+This mapping connects each project feature to the relevant components, providing a clear overview of how each part contributes to the application's functionality.
