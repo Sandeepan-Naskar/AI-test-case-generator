@@ -1,0 +1,11 @@
+com\bank\models\Transaction.class
+com\bank\services\FraudService.class
+com\bank\controllers\AccountController.class
+com\bank\controllers\TransferController.class
+com\bank\repositories\TransactionRepository.class
+com\bank\repositories\AccountRepository.class
+com\bank\models\Account.class
+com\bank\config\SwaggerConfig.class
+com\bank\BankController.class
+com\bank\BankingApiApplication.class
+com\bank\models\TransactionType.class
