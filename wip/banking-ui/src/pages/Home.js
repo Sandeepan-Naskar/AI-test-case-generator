@@ -1,11 +1,13 @@
+import React from "react";
 import Navbar from "../components/Navbar";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="container">
+    <div>
       <Navbar />
-      <h1>Welcome to Banking App</h1>
-      <p>Select an option from the navbar to get started.</p>
+      <h2>Welcome to the Banking App</h2>
     </div>
   );
-}
+};
+
+export default Home;

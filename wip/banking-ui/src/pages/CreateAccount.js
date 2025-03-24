@@ -1,28 +1,54 @@
-import { useState } from "react";
-import { createAccount } from "../api/bankingApi";
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
 
-export default function CreateAccount() {
-  const [name, setName] = useState("");
-  const [balance, setBalance] = useState("");
+const CreateAccount = () => {
+  const [formData, setFormData] = useState({
+    accountNumber: "",
+    name: "",
+    balance: "",
+    currency: "USD",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createAccount({ name, balance, currency: "INR" });
-    alert("Account Created!");
+    setMessage("");
+
+    try {
+      const response = await fetch("http://192.168.1.16:8080/api/accounts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Failed to create account!");
+
+      setMessage("✅ Account created successfully!");
+    } catch (err) {
+      setMessage("❌ Error: " + err.message);
+    }
   };
 
   return (
     <div className="container">
-      <Navbar />
-      <h2>Create Account</h2>
+      <h2>Create New Account</h2>
       <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        <label>Balance:</label>
-        <input type="number" value={balance} onChange={(e) => setBalance(e.target.value)} required />
-        <button className="button" type="submit">Create</button>
+        <input type="text" name="accountNumber" placeholder="Account Number" onChange={handleChange} required />
+        <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
+        <input type="number" name="balance" placeholder="Initial Balance" onChange={handleChange} required />
+        <select name="currency" onChange={handleChange}>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+        </select>
+        <button type="submit">Create Account</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
-}
+};
+
+export default CreateAccount;
