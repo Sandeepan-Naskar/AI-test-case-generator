@@ -36,7 +36,15 @@ public class TransferController {
     public Map<String, Object> transferFunds(@RequestBody Map<String, Object> transferDetails) {
         String fromAccount = (String) transferDetails.get("fromAccount");
         String toAccount = (String) transferDetails.get("toAccount");
-        double amount = (double) transferDetails.get("amount");
+        //double amount = (double) transferDetails.get("amount");
+        Object amountObj = transferDetails.get("amount");
+
+        double amount;
+        if (amountObj instanceof Number) {
+            amount = ((Number) amountObj).doubleValue();  // ✅ Handles both Integer & Double
+        } else {
+            amount = Double.parseDouble(amountObj.toString());  // ✅ Converts String to Double
+        }
 
         Map<String, Object> response = new HashMap<>();
 
@@ -120,7 +128,16 @@ public class TransferController {
     @PostMapping("/deposit")
     public Map<String, Object> depositFunds(@RequestBody Map<String, Object> depositDetails) {
         String accountNumber = (String) depositDetails.get("accountNumber");
-        double amount = (double) depositDetails.get("amount");
+        //double amount = (double) depositDetails.get("amount");
+        Object amountObj = depositDetails.get("amount");
+
+        double amount;
+        if (amountObj instanceof Number) {
+            amount = ((Number) amountObj).doubleValue();  // ✅ Handles both Integer & Double
+        } else {
+            amount = Double.parseDouble(amountObj.toString());  // ✅ Converts String to Double
+        }
+
 
         Map<String, Object> response = new HashMap<>();
         Optional<Account> accountOpt = accountRepository.findById(accountNumber);
@@ -154,7 +171,15 @@ public class TransferController {
     @PostMapping("/withdraw")
     public Map<String, Object> withdrawFunds(@RequestBody Map<String, Object> withdrawDetails) {
         String accountNumber = (String) withdrawDetails.get("accountNumber");
-        double amount = (double) withdrawDetails.get("amount");
+        Object amountObj = withdrawDetails.get("amount");
+
+        double amount;
+        if (amountObj instanceof Number) {
+            amount = ((Number) amountObj).doubleValue();  // ✅ Handles both Integer & Double
+        } else {
+            amount = Double.parseDouble(amountObj.toString());  // ✅ Converts String to Double
+        }
+        //double amount = (double) withdrawDetails.get("amount");
 
         Map<String, Object> response = new HashMap<>();
         Optional<Account> accountOpt = accountRepository.findById(accountNumber);
