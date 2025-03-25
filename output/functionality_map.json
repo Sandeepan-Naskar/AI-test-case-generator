@@ -1,0 +1,39 @@
+{
+  "functionalities": [
+    {
+      "name": "Health Check",
+      "description": "Provides a health check endpoint to verify the application's status.",
+      "files": [
+        "healthcheck.java"
+      ],
+      "primary_files": [
+        "healthcheck.java"
+      ],
+      "supporting_files": [],
+      "category": "system",
+      "complexity": "low",
+      "test_priority": "high"
+    },
+    {
+      "name": "Journal Entry Management",
+      "description": "Manages journal entries, including creating, reading, updating, and deleting entries.",
+      "files": [
+        "JournalEntryControllerV2.java",
+        "JournalEntry.java",
+        "JournalEntryRepository.java",
+        "JournalEntryService.java"
+      ],
+      "primary_files": [
+        "JournalEntryControllerV2.java",
+        "JournalEntry.java"
+      ],
+      "supporting_files": [
+        "JournalEntryRepository.java",
+        "JournalEntryService.java"
+      ],
+      "category": "core",
+      "complexity": "medium",
+      "test_priority": "high"
+    }
+  ]
+}
